@@ -1,8 +1,16 @@
-import React from "react";  
-import Track from "./Track";    
-import Tracklist from "./Tracklist";
+import React from "react";
+import List from "./List";
 
-
-export default function Playlist(){
-    return <h2>Playlist</h2>
+export default function Playlist({ playList, handleRemove }) {
+    
+  return (
+    <div>
+      <h2>Playlist</h2>
+      <div>
+        {playList.map((list) => (
+          <List key={list.id} list={list} handleRemove={handleRemove}/>
+        ))}
+      </div>
+    </div>
+  );
 }

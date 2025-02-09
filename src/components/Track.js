@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "../css/Track.module.css";
 
-function Track({ track }) {
+function Track({ track, handleAdd }) {
   return (
     <div className={styles.container}>
       <div className={styles.track}>
@@ -11,7 +11,9 @@ function Track({ track }) {
         </p>
       </div>
       <div className={styles.buttonWrapper}>
-        <button>+</button>
+        <button onClick={() => handleAdd(track)}>
+          +
+        </button>
       </div>
     </div>
   );

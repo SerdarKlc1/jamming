@@ -3,28 +3,12 @@ import SearchBar from "./components/SearchBar";
 import SearchResults from "./components/SearchResults";
 import Playlist from "./components/Playlist";
 import styles from "./css/App.module.css";
-
+import { data } from "./db";
 function App() {
-  const [searchResults, setSearchResults] = useState([
-    {
-      id: 1,
-      name: "Blinding Lights",
-      artist: "The Weeknd",
-      album: "After Hours",
-    },
-    {
-      id: 2,
-      name: "Levitating",
-      artist: "Dua Lipa",
-      album: "Future Nostalgia",
-    },
-    { id: 3, name: "Peaches", artist: "Justin Bieber", album: "Justice" },
-  ]);
+  const [searchResults, setSearchResults] = useState(data);
   const [playlistUpdate, setPlaylistUpdate] = useState([]);
 
   const handleSearch = (term) => {
-    console.log("Searching for:", term);
-
     const filteredResults = searchResults.filter(
       (track) =>
         track.name.toLowerCase().includes(term.toLowerCase()) ||
@@ -34,7 +18,19 @@ function App() {
 
     setSearchResults(filteredResults);
   };
-  
+  const handleAdd = (e) => {
+    if (!playlistUpdate.some((track) => track.id === e.id)) {
+      setPlaylistUpdate((prev) => [...prev, e]);
+    } else {
+      alert("The song is already added");
+    }
+  };
+
+  const handleRemove = (e) => {
+    const removeItem = playlistUpdate.filter((track) => track.id !== e.id);
+    setPlaylistUpdate(removeItem);
+  };
+
   return (
     <div className={styles.app}>
       <div className={styles.searchBar}>
@@ -42,10 +38,10 @@ function App() {
       </div>
       <div className={styles.content}>
         <div className={styles.results}>
-          <SearchResults searchResults={searchResults} />
+          <SearchResults handleAdd={handleAdd} searchResults={searchResults} />
         </div>
         <div className={styles.playlist}>
-          <Playlist />
+          <Playlist handleRemove={handleRemove} playList={playlistUpdate} />
         </div>
       </div>
     </div>
