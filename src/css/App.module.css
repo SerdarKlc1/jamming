@@ -1,0 +1,32 @@
+.app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #ff4e50, #fc913a);
+    font-family: Arial, sans-serif;
+    color: white;
+  }
+  
+  .searchBar {
+    margin: 20px 0;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    width: 80%;
+    margin-top: 20px;
+  }
+  
+  .results, .playlist {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+  }
+  
