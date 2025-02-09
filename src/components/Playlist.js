@@ -3,6 +3,6 @@ import Track from "./Track";
 import Tracklist from "./Tracklist";
 
 
-function Playlist(){
-    
+export default function Playlist(){
+    return <h2>Playlist</h2>
 }
