@@ -1,6 +1,6 @@
 import React from "react";
 import Tracklist from "./Tracklist";
-import styles from "../css/SearchResults.module.css"; // Create this CSS module
+import styles from "../css/SearchResults.module.css"; 
 
 function SearchResults({ searchResults }) {
   return (

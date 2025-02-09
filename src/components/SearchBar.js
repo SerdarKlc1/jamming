@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import styles from "../css/SearchBar.module.css"; // Import CSS module
+import styles from "../css/SearchBar.module.css"; 
 
 function SearchBar({ onSearch }) {
   const [term, setTerm] = useState("");
 
-  // Handle input change
+  
   const handleTermChange = (event) => {
     setTerm(event.target.value);
   };
 
-  // Handle search button click
+  
   const handleSearch = () => {
     onSearch(term);
   };

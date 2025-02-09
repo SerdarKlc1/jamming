@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../css/Track.module.css"; // Create this CSS module
+import styles from "../css/Track.module.css";
 
 function Track({ track }) {
   return (
@@ -7,7 +7,9 @@ function Track({ track }) {
       <h3>{track.name}</h3>
       <p>
         {track.artist} | {track.album}
+
       </p>
+     
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import Track from "./Track";
-import styles from "../css/Tracklist.module.css"; // Create this CSS module
+import styles from "../css/Tracklist.module.css";
 
 function Tracklist({ tracks }) {
   return (
