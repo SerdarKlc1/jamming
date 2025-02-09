@@ -7,7 +7,7 @@
     width: 60%;
   }
   
-  input {
+  .searchBarInput {
     flex-grow: 1;
     padding: 10px;
     border: 2px solid #ff007f;

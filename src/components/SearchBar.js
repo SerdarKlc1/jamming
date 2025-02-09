@@ -16,7 +16,7 @@ function SearchBar({ onSearch }) {
 
   return (
     <div className={styles.searchBar}>
-      <input
+      <input className={styles.searchBarInput}
         type="text"
         placeholder="Enter a song, album, or artist"
         value={term}
