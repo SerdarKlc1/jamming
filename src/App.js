@@ -1,23 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SearchBar from "./components/SearchBar";
 import SearchResults from "./components/SearchResults";
 import Playlist from "./components/Playlist";
 import styles from "./css/App.module.css";
-import { data } from "./db";
+import { mockData } from "./db";
+import { getAccessToken, getStoredAccessToken, fetchArtistData } from "./components/SpotifyAPI"
 function App() {
-  const [searchResults, setSearchResults] = useState(data);
+  const [searchResults, setSearchResults] = useState(mockData);
   const [playlistUpdate, setPlaylistUpdate] = useState([]);
-
-  const handleSearch = (term) => {
+  const [titlePlaylist, setTitlePlaylist] = useState("Playlist");
+ 
+  
+  const handleSearch =  (term) => {
+    
     const filteredResults = searchResults.filter(
       (track) =>
         track.name.toLowerCase().includes(term.toLowerCase()) ||
         track.artist.toLowerCase().includes(term.toLowerCase()) ||
         track.album.toLowerCase().includes(term.toLowerCase())
     );
-
     setSearchResults(filteredResults);
-  };
+  }
+
+    
+
   const handleAdd = (e) => {
     if (!playlistUpdate.some((track) => track.id === e.id)) {
       setPlaylistUpdate((prev) => [...prev, e]);
@@ -31,6 +37,16 @@ function App() {
     setPlaylistUpdate(removeItem);
   };
 
+  const handleTitle = (e) => {
+    setTitlePlaylist(e.target.value);
+  };
+
+  const savePlayList = () => {
+    const trackUri = playlistUpdate.map((track) => track.uri);
+    console.log(trackUri);
+    setPlaylistUpdate([]);
+    setTitlePlaylist("New Playlist");
+  };
   return (
     <div className={styles.app}>
       <div className={styles.searchBar}>
@@ -38,10 +54,20 @@ function App() {
       </div>
       <div className={styles.content}>
         <div className={styles.results}>
-          <SearchResults handleAdd={handleAdd} searchResults={searchResults} />
+          <SearchResults
+            handleAdd={handleAdd}
+            handleRemove={handleRemove}
+            searchResults={searchResults}
+          />
         </div>
         <div className={styles.playlist}>
-          <Playlist handleRemove={handleRemove} playList={playlistUpdate} />
+          <Playlist
+            setTitle={handleTitle}
+            onSave={savePlayList}
+            titlePlaylist={titlePlaylist}
+            playList={playlistUpdate}
+            handleRemove={handleRemove}
+          />
         </div>
       </div>
     </div>

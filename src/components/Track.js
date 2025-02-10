@@ -11,9 +11,7 @@ function Track({ track, handleAdd }) {
         </p>
       </div>
       <div className={styles.buttonWrapper}>
-        <button onClick={() => handleAdd(track)}>
-          +
-        </button>
+        <button onClick={() => handleAdd(track)}>+</button>
       </div>
     </div>
   );

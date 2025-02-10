@@ -11,7 +11,7 @@ function List({ list, handleRemove }) {
           </p>
         </div>
         <div className={styles.buttonWrapper}>
-          <button onClick={()=>handleRemove(list)}>-</button>
+          <button onClick={() => handleRemove(list)}>-</button>
         </div>
       </div>
     </>
