@@ -6,15 +6,13 @@ import styles from "./css/App.module.css";
 import { mockData } from "./db";
 import { getStoredAccessToken } from "./components/SpotifyAPI";
 function App() {
- 
-  const [tracks, setTracks] = useState('');
-  const [searchResults, setSearchResults] = useState(null)
+  const [tracks, setTracks] = useState("");
   const [playlistUpdate, setPlaylistUpdate] = useState([]);
   const [titlePlaylist, setTitlePlaylist] = useState("Playlist");
 
-  useEffect(()=>{
-    fetchArtistData('Rihanna')
-  },[])
+  useEffect(() => {
+    fetchArtistData("Rihanna");
+  }, []);
 
   const fetchArtistData = async (term) => {
     const token = await getStoredAccessToken();
@@ -30,23 +28,15 @@ function App() {
       const data = await response.json();
       console.log(data);
 
+      const searchTracks = data.tracks?.items || [];
 
-  
-    const searchTracks = data.tracks?.items || [];
-  
-  
-
-    // Update state safely
-    setTracks(searchTracks);
-
-    setSearchResults(searchTracks); 
-     
+      // Update state safely
+      setTracks(searchTracks);
     } catch (error) {
       console.error("Error fetching from Spotify:", error);
     }
   };
 
-  
   const handleAdd = (e) => {
     if (!playlistUpdate.some((track) => track.id === e.id)) {
       setPlaylistUpdate((prev) => [...prev, e]);
@@ -81,7 +71,6 @@ function App() {
             handleAdd={handleAdd}
             handleRemove={handleRemove}
             tracks={tracks}
-            searchResults={searchResults}
             mockData={mockData}
           />
         </div>

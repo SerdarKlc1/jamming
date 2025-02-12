@@ -1,5 +1,3 @@
-import React from "react";
-import SpotifyAuth from "./components/SpotifyAPI.js";
 
 const mockData = [
   {

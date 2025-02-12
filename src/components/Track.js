@@ -6,7 +6,7 @@ function Track({track={name:'Blinding Lights'}, handleAdd, album='album', artist
     <div className={styles.container}>
       <div className={styles.track}>
         <h3>{track.name}</h3>
-        <p>{album}</p> || <p>{artist}</p>
+        <p>{album}</p>  -  <p>{artist}</p>
       </div>
       <div className={styles.buttonWrapper}>
         <button onClick={() => handleAdd(track)}>+</button>

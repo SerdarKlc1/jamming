@@ -7,7 +7,7 @@ function List({ list, handleRemove }) {
         <div className={styles.track}>
           <h3>{list.name}</h3>
           <p>
-            {list.artist} | {list.album}
+            {list.album?.name ||  "Unkown Album"} - {list.artists?.[0]?.name || "Unknown Artist"}
           </p>
         </div>
         <div className={styles.buttonWrapper}>
