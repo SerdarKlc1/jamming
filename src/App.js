@@ -4,26 +4,49 @@ import SearchResults from "./components/SearchResults";
 import Playlist from "./components/Playlist";
 import styles from "./css/App.module.css";
 import { mockData } from "./db";
-import { getAccessToken, getStoredAccessToken, fetchArtistData } from "./components/SpotifyAPI"
+import { getStoredAccessToken } from "./components/SpotifyAPI";
 function App() {
-  const [searchResults, setSearchResults] = useState(mockData);
+ 
+  const [tracks, setTracks] = useState('');
+  const [searchResults, setSearchResults] = useState(null)
   const [playlistUpdate, setPlaylistUpdate] = useState([]);
   const [titlePlaylist, setTitlePlaylist] = useState("Playlist");
- 
+
+  useEffect(()=>{
+    fetchArtistData('Rihanna')
+  },[])
+
+  const fetchArtistData = async (term) => {
+    const token = await getStoredAccessToken();
+    const url = `https://api.spotify.com/v1/search?q=${term}&type=artist,track,album`;
+
+    try {
+      const response = await fetch(url, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const data = await response.json();
+      console.log(data);
+
+
   
-  const handleSearch =  (term) => {
-    
-    const filteredResults = searchResults.filter(
-      (track) =>
-        track.name.toLowerCase().includes(term.toLowerCase()) ||
-        track.artist.toLowerCase().includes(term.toLowerCase()) ||
-        track.album.toLowerCase().includes(term.toLowerCase())
-    );
-    setSearchResults(filteredResults);
-  }
+    const searchTracks = data.tracks?.items || [];
+  
+  
 
-    
+    // Update state safely
+    setTracks(searchTracks);
 
+    setSearchResults(searchTracks); 
+     
+    } catch (error) {
+      console.error("Error fetching from Spotify:", error);
+    }
+  };
+
+  
   const handleAdd = (e) => {
     if (!playlistUpdate.some((track) => track.id === e.id)) {
       setPlaylistUpdate((prev) => [...prev, e]);
@@ -50,14 +73,16 @@ function App() {
   return (
     <div className={styles.app}>
       <div className={styles.searchBar}>
-        <SearchBar onSearch={handleSearch} />
+        <SearchBar onSearch={fetchArtistData} />
       </div>
       <div className={styles.content}>
         <div className={styles.results}>
           <SearchResults
             handleAdd={handleAdd}
             handleRemove={handleRemove}
+            tracks={tracks}
             searchResults={searchResults}
+            mockData={mockData}
           />
         </div>
         <div className={styles.playlist}>

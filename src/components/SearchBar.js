@@ -3,17 +3,21 @@ import styles from "../css/SearchBar.module.css";
 
 function SearchBar({ onSearch }) {
   const [term, setTerm] = useState("");
-  const handleSearch = (e) => {
+  
+
+  const submitTerm = (e) => {
     e.preventDefault();
-    onSearch(term);
+
+      console.log(term)
+      onSearch(term);
+    
   };
   const handleTermChange = (event) => {
     setTerm(event.target.value);
   };
 
-
   return (
-    <form onClick={handleSearch} className={styles.searchBar}>
+    <form onClick={submitTerm} className={styles.searchBar}>
       <input
         className={styles.searchBarInput}
         type="text"
@@ -25,5 +29,6 @@ function SearchBar({ onSearch }) {
     </form>
   );
 }
+
 
 export default SearchBar;

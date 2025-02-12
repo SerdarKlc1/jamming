@@ -20,7 +20,7 @@ const mockData = [
     id: 3,
     name: "Peaches",
     artist: "Justin Bieber",
-    album: "Justice",
+    album:"Justice",
     uri: "uri3",
   },
 ];
