@@ -16,5 +16,5 @@
     justify-content: end;
     height: 40px;
     align-self: center;
+    flex-shrink: 2;
   }
-  

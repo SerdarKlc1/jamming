@@ -1,3 +1,4 @@
+
 .app {
     display: flex;
     flex-direction: column;
@@ -21,11 +22,21 @@
     gap: 15px;
     width: 90%;
     margin-top: 20px;
+    margin: auto;
   }
-  
+  @media (max-width: 768px) {
+    .content {
+      grid-template-columns: 1fr; 
+    }
+  }
   .results, .playlist {
     background: rgba(255, 255, 255, 0.1);
     padding: 20px;
     border-radius: 10px;
     backdrop-filter: blur(10px);
+  }
+  .playlist {
+    flex-shrink: 1; 
+    min-width: 250px; 
+    max-width: 100%; 
   }

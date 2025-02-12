@@ -13,10 +13,13 @@
   border: none;
 }
 
+
+
 .buttonSaveWrapper {
   display: flex;
-  
+  flex-wrap: wrap;
   justify-content: center;
-  height: 40px;
-  align-self: center;
+  align-items: center;
+  width: 100%;
+  min-width: 100px;
 }
