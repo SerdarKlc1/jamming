@@ -2,8 +2,8 @@
     width: 100%;
     display: grid;
     grid-template-columns: 4fr 1fr;
-   
-    margin-top: 20px;
+    margin-top: auto;
+    margin-bottom: auto;
     border-top: 1px solid #fff;
   }
   .track {

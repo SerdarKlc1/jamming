@@ -1,3 +1,35 @@
+body,
+html,
+#root {
+  height: 100%;
+ 
+
+html {
+  font-size: 18px;
+}
+
+h1 {
+  padding: .77rem 0;
+  background-color:#ff000091;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.88rem;
+  color: #ff007fbf;
+  margin: 0;
+ 
+}
+}
+
+h1 .highlight {
+  color: #fff;;
+}
+
+h2 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.55rem;
+}
+
+
 .app {
   display: flex;
   flex-direction: column;
@@ -40,4 +72,7 @@
   min-width: 250px;
   max-width: 100%;
   overflow: hidden;
+}
+p {
+  margin: auto
 }

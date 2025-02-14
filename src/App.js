@@ -4,7 +4,11 @@ import SearchResults from "./components/SearchResults";
 import Playlist from "./components/Playlist";
 import styles from "./css/App.module.css";
 import { mockData } from "./db";
-import { getStoredAccessToken, sendPlayListtoSpotify, addTracksToPlaylist } from "./components/SpotifyAPI";
+import {
+  getStoredAccessToken,
+  sendPlayListtoSpotify,
+  addTracksToPlaylist,
+} from "./components/SpotifyAPI";
 function App() {
   const [tracks, setTracks] = useState("");
   const [playlistUpdate, setPlaylistUpdate] = useState([]);
@@ -30,7 +34,6 @@ function App() {
 
       const searchTracks = data.tracks?.items || [];
 
-      
       setTracks(searchTracks);
     } catch (error) {
       console.error("Error fetching from Spotify:", error);
@@ -61,27 +64,30 @@ function App() {
 
     if (trackUri.length === 0) {
       console.warn("No tracks to save.");
-      return;  
+      return;
     }
 
     try {
-        const playlistId = await sendPlayListtoSpotify(titlePlaylist);
+      const playlistId = await sendPlayListtoSpotify(titlePlaylist);
 
-        if (playlistId) {
-            await addTracksToPlaylist(playlistId, trackUri); 
+      if (playlistId) {
+        await addTracksToPlaylist(playlistId, trackUri);
 
-            
-            setPlaylistUpdate([]);
-            setTitlePlaylist("New Playlist");
+        setPlaylistUpdate([]);
+        setTitlePlaylist("New Playlist");
 
-            console.log("Playlist saved successfully!");
-        }
+        console.log("Playlist saved successfully!");
+      }
     } catch (error) {
-        console.error("Error saving playlist:", error);
+      console.error("Error saving playlist:", error);
     }
-};
+  };
 
   return (
+    <>
+     <h1>
+        Ja<span className={styles.highlight}>mm</span>ing
+      </h1>
     <div className={styles.app}>
       <div className={styles.searchBar}>
         <SearchBar onSearch={fetchArtistData} />
@@ -106,6 +112,7 @@ function App() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 
