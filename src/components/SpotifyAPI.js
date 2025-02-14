@@ -27,5 +27,73 @@ const getStoredAccessToken = async () => {
   return token;
 };
 
+const sendPlayListtoSpotify = async (titlePlaylist) => {
+  try {
+    console.log("Creating playlist...");
+    
+    const userId = "0zacrvlxuelxqrtc92jbcdyo0";
+    const accessToken = await getStoredAccessToken();
+    console.log("🔑 Access Token:", accessToken);
+   
+    const endpoint = `https://api.spotify.com/v1/users/${userId}/playlists`;
+    const body = {
+      name: titlePlaylist,
+      description: titlePlaylist,
+      public: false,
+    };
 
-export { getAccessToken, getStoredAccessToken };
+    const post = await fetch(endpoint, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+      body: JSON.stringify(body),
+    });
+
+    if (!post.ok) {
+      throw new Error(`HTTP error! Status: ${post.status}`);
+    }
+
+    const data = await post.json();
+    console.log("Playlist Created:", data);
+
+    return data.id; // ✅ Returns new playlist ID
+  } catch (error) {
+    console.error("Error creating playlist:", error);
+  }
+};
+
+const addTracksToPlaylist = async (playlistId, trackUris) => {
+  try {
+    console.log("Adding tracks to playlist:", playlistId, trackUris);
+
+    const accessToken = await getStoredAccessToken();
+    const endpoint = `https://api.spotify.com/v1/playlists/${playlistId}/tracks`;
+    
+
+    const body = {
+      uris: trackUris,  // ✅ Send track URIs as an array
+    };
+
+    const response = await fetch(endpoint, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+      body: JSON.stringify(body),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    console.log("Tracks added to playlist successfully!");
+  } catch (error) {
+    console.error("Error adding tracks:", error);
+  }
+};
+
+
+export { getAccessToken, getStoredAccessToken, sendPlayListtoSpotify, addTracksToPlaylist };
