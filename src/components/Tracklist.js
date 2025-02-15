@@ -2,7 +2,7 @@ import React from "react";
 import Track from "./Track";
 import styles from "../css/Tracklist.module.css";
 
-function Tracklist({ tracks, handleAdd, playList }) {
+function Tracklist({ tracks, handleAdd, playList, handleRemove }) {
   return (
     <div className={styles.tracklist}>
       {tracks?
@@ -14,6 +14,7 @@ function Tracklist({ tracks, handleAdd, playList }) {
               album={track.album || "Unkown Album"}
               artist={track.artist|| "Unknown Artist"}
               playList={playList}
+              handleRemove={handleRemove}
             />
           ))
        : "" }

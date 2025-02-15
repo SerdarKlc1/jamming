@@ -6,15 +6,17 @@ function Track({
   handleAdd,
   album = "album",
   artist = "artist",
-  playList
+  playList,
+  handleRemove
+
 }) {
  const renderAction = useCallback(()=>{
   if(playList.some(list=>list.id===track.id)){
-    return (<button key ={track.id} onClick={() => handleAdd(track)} >-</button>)
+    return (<button key ={track.id} onClick={() => handleRemove(track)} >-</button>)
   } else {
     return (<button key ={track.id} onClick={() => handleAdd(track)} >+</button>)
   }
- },[handleAdd, playList, track])
+ },[handleAdd, playList, track, handleRemove])
 
   return (
     <div className={styles.container}>
