@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import styles from "../css/Track.module.css";
 
 function Track({
@@ -6,7 +6,16 @@ function Track({
   handleAdd,
   album = "album",
   artist = "artist",
+  playList
 }) {
+ const renderAction = useCallback(()=>{
+  if(playList.some(list=>list.id===track.id)){
+    return (<button key ={track.id} onClick={() => handleAdd(track)} >-</button>)
+  } else {
+    return (<button key ={track.id} onClick={() => handleAdd(track)} >+</button>)
+  }
+ },[handleAdd])
+
   return (
     <div className={styles.container}>
       <div className={styles.track}>
@@ -16,7 +25,7 @@ function Track({
         </p>
       </div>
       <div className={styles.buttonWrapper}>
-        <button onClick={() => handleAdd(track)}>+</button>
+      {renderAction()}
       </div>
     </div>
   );

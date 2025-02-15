@@ -4,12 +4,12 @@ import SearchResults from "./components/SearchResults";
 import Playlist from "./components/Playlist";
 import styles from "./css/App.module.css";
 import Spotify from "./components/SpotifyAPI";
-import { mockData } from "./db";
 
 function App() {
   const [tracks, setTracks] = useState("");
   const [playlistUpdate, setPlaylistUpdate] = useState([]);
   const [titlePlaylist, setTitlePlaylist] = useState("Playlist");
+ 
 
   const fetchArtistData = useCallback((term)=>{
     Spotify.search(term).then(setTracks);
@@ -35,9 +35,9 @@ function App() {
 
   const savePlayList = useCallback(()=>{
     const trackUri = playlistUpdate.map((track) => track.uri);
-    console.log("Track URIs:", trackUri);
-    console.log("playlist name",titlePlaylist)
     Spotify.savePlaylist(titlePlaylist, trackUri)
+    setTitlePlaylist('Playlist')
+    setPlaylistUpdate([])
   },[playlistUpdate, titlePlaylist]);
  
   return (
@@ -55,7 +55,7 @@ function App() {
             handleAdd={handleAdd}
             handleRemove={handleRemove}
             tracks={tracks}
-            mockData={mockData}
+            playList={playlistUpdate}
           />
         </div>
         <div className={styles.playlist}>
