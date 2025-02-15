@@ -11,8 +11,8 @@ function Tracklist({ tracks, handleAdd, mockData }) {
               handleAdd={handleAdd}
               key={track.id}
               track={track}
-              album={track.album?.name || "Unkown Album"}
-              artist={track.artists?.[0]?.name || "Unknown Artist"}
+              album={track.album || "Unkown Album"}
+              artist={track.artist|| "Unknown Artist"}
             />
           ))
         : mockData.map((track) => {

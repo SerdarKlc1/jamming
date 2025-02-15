@@ -52,7 +52,7 @@ h2 {
   grid-template-columns: 1fr 1fr;
   gap: 15px;
   width: 90%;
-  margin-top: 20px;
+  margin-top: 10px;
   margin: auto;
 }
 @media (max-width: 600px) {
@@ -63,7 +63,7 @@ h2 {
 .results,
 .playlist {
   background: rgba(255, 255, 255, 0.1);
-  padding: 20px;
+  padding: 10px;
   border-radius: 10px;
   backdrop-filter: blur(10px);
 }
