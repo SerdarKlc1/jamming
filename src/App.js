@@ -13,7 +13,7 @@ function App() {
 
   const fetchArtistData = useCallback((term)=>{
     Spotify.search(term).then(setTracks);
-  },[]);
+  },[setTracks]);
 
   const handleAdd = (e) => {
     
@@ -35,9 +35,10 @@ function App() {
 
   const savePlayList = useCallback(()=>{
     const trackUri = playlistUpdate.map((track) => track.uri);
-    Spotify.savePlaylist(titlePlaylist, trackUri)
-    setTitlePlaylist('Playlist')
-    setPlaylistUpdate([])
+    Spotify.savePlaylist(titlePlaylist, trackUri).then(()=>{
+      setTitlePlaylist('Playlist');
+      setPlaylistUpdate([])
+    })
   },[playlistUpdate, titlePlaylist]);
  
   return (
@@ -49,7 +50,7 @@ function App() {
       <div className={styles.searchBar}>
         <SearchBar onSearch={fetchArtistData} />
       </div>
-      <div className={styles.content}>
+      <div className={tracks ? styles.content:styles.initialContent}>
         <div className={styles.results}>
           <SearchResults
             handleAdd={handleAdd}

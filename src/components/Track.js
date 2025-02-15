@@ -14,7 +14,7 @@ function Track({
   } else {
     return (<button key ={track.id} onClick={() => handleAdd(track)} >+</button>)
   }
- },[handleAdd])
+ },[handleAdd, playList, track])
 
   return (
     <div className={styles.container}>

@@ -46,7 +46,15 @@ h2 {
   display: flex;
   justify-content: center;
 }
+.initialContent {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+  width: 90%;
+  margin-top: 10px;
+  
 
+}
 .content {
   display: grid;
   grid-template-columns: 1fr 1fr;

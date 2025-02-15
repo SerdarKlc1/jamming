@@ -5,19 +5,20 @@ function SearchBar({ onSearch }) {
   const [term, setTerm] = useState("");
   
 
-  const submitTerm = (e) => {
+  const submitTerm =  (e) => {
     e.preventDefault();
-
-      console.log(term)
-      onSearch(term);
+    onSearch(term);
+      
+ 
     
+      
   };
   const handleTermChange = (event) => {
     setTerm(event.target.value);
   };
 
   return (
-    <form onClick={submitTerm} className={styles.searchBar}>
+    <form onSubmit={submitTerm} className={styles.searchBar}>
       <input
         className={styles.searchBarInput}
         type="text"
