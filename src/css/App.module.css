@@ -82,7 +82,8 @@ h2 {
 }
 
 p {
-  margin: auto
+  margin: auto;
+  padding-bottom: 8px;
 }
 
 

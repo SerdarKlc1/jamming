@@ -38,10 +38,12 @@ search (term) {
     }).then(response => {
       return response.json();
     }).then(jsonResponse => {
+      console.log(jsonResponse);
       if (!jsonResponse.tracks) {
         return [];
       }
       return jsonResponse.tracks.items.map(track => ({
+        src: `https://open.spotify.com/embed/track/${track.id}`,
         id: track.id,
         name: track.name,
         artist: track.artists?.[0]?.name || "Unknown Artist",
