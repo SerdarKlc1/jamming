@@ -24,14 +24,20 @@ function App() {
   const handleAdd = (e) => {
     if (!playlistUpdate.some((track) => track.id === e.id)) {
       setPlaylistUpdate((prev) => [...prev, e]);
+      
     } else {
       alert("The song is already added");
     }
+    const removeItem= tracks.filter((track)=>track.id !== e.id)
+    setTracks(removeItem)
   };
 
   const handleRemove = (e) => {
     const removeItem = playlistUpdate.filter((track) => track.id !== e.id);
     setPlaylistUpdate(removeItem);
+
+    setTracks(prev=>[e, ...prev])
+
   };
 
   const handleTitle = (e) => {
