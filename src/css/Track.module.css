@@ -18,6 +18,12 @@
   align-self: center;
 }
 p {
+  font-style: italic;
+}
+.result,
+.playlist {
+  flex-shrink: 1;
+  min-width: 250px;
+  max-width: 100%;
  
-  font-style: italic
 }
