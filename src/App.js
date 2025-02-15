@@ -1,4 +1,4 @@
-import React, {useState, useCallback } from "react";
+import React, {useState, useCallback, useEffect } from "react";
 import SearchBar from "./components/SearchBar";
 import SearchResults from "./components/SearchResults";
 import Playlist from "./components/Playlist";
@@ -9,7 +9,10 @@ function App() {
   const [tracks, setTracks] = useState("");
   const [playlistUpdate, setPlaylistUpdate] = useState([]);
   const [titlePlaylist, setTitlePlaylist] = useState("Playlist");
- 
+  
+  useEffect(()=>{
+    Spotify.getAccessToken()
+  },[])
 
   const fetchArtistData = useCallback((term)=>{
     Spotify.search(term).then(setTracks);
