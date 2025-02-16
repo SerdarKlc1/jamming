@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import SearchBar from "./components/SearchBar";
 import SearchResults from "./components/SearchResults";
 import Playlist from "./components/Playlist";
@@ -10,16 +10,18 @@ function App() {
   const [tracks, setTracks] = useState("");
   const [playlistUpdate, setPlaylistUpdate] = useState([]);
   const [titlePlaylist, setTitlePlaylist] = useState("Playlist");
-  const [isLogin, setIsLogin] = useState(false);
+  const [isLogin, setIsLogin] = useState(null);
 
-  const handleLogin = useCallback(() => {
-    Spotify.getAccessToken();
-    setIsLogin((prev)=>!prev);
-  }, [setIsLogin]);
+  // const handleLogin = useCallback(() => {
+  //   Spotify.getAccessToken()
+  //   setIsLogin((prev)=>!prev);
+    
+  // }, [setIsLogin]);
 
-  // useEffect(() => {
-  //   Spotify.getAccessToken();
-  // }, []);
+  useEffect(() => {
+   const accessToken= Spotify.getAccessToken();
+   setIsLogin(accessToken);
+  }, []);
   const fetchArtistData = useCallback(
     (term) => {
       Spotify.search(term)
@@ -77,7 +79,7 @@ function App() {
           <div className="welcome-container">
             <h2 id={styles.header}>🎵 Welcome to Jamming!</h2>
             <p>Create and save your playlists directly to Spotify.</p>
-            <Login handleLogin={handleLogin}  />
+            <Login handleLogin={() => Spotify.getAccessToken()}  />
           </div>
         )}
         <div className={tracks ? styles.content : styles.initialContent}>
