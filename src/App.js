@@ -35,6 +35,7 @@ function App() {
     },
     [setTracks]
   );
+  
   const addMoreResults = () => {
     Spotify.moveNext().then((response) =>
       setTracks((prev) => [...prev, ...response])

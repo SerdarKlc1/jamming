@@ -1,6 +1,10 @@
 const clientId = '4075a427427f42c194d4a3686317fbc1'; // Insert client ID here.
 // const redirectUri = "https://serdarklc1.github.io/jamming/callback";
-const redirectUri='http://localhost:3000/callback' ;
+const redirectUri='https://jammmingserdar.netlify.app/callback' ;
+// const redirectUri='http://localhost:3000/callback' ;
+
+
+
 let nextPage;
 let response;
 let moveNextResponse
