@@ -10,8 +10,8 @@
   },
   "homepage": "https://serdarklc1.github.io/jamming",
   "scripts": {
-     "predeploy": "npm run build",
-  "deploy": "gh-pages -d build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
