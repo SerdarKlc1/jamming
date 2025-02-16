@@ -3,7 +3,7 @@ import SearchBar from "./components/SearchBar";
 import SearchResults from "./components/SearchResults";
 import Playlist from "./components/Playlist";
 import styles from "./css/App.module.css";
-import Spotify from "./components/SpotifyAPI";
+import {Spotify, nextPage} from "./components/SpotifyAPI";
 
 function App() {
   const [tracks, setTracks] = useState("");
@@ -16,11 +16,15 @@ function App() {
 
   const fetchArtistData = useCallback(
     (term) => {
-      Spotify.search(term).then(setTracks);
+      Spotify.search(term).then((response)=>Spotify.responseHandler(response)).then((setTracks));
     },
     [setTracks]
   );
-
+  const addMoreResults = ()=> {
+    
+    Spotify.moveNext().then((response)=>setTracks((prev)=>[...prev, ...response]))
+    console.log('add more',tracks)
+  };
   const handleAdd = (e) => {
     if (!playlistUpdate.some((track) => track.id === e.id)) {
       setPlaylistUpdate((prev) => [...prev, e]);
@@ -68,6 +72,7 @@ function App() {
               handleRemove={handleRemove}
               tracks={tracks}
               playList={playlistUpdate}
+              addMoreResults={addMoreResults}
             />
           </div>
           <div className={tracks ? styles.playlist : styles.initialPlaylist}>

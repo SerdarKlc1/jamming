@@ -1,3 +1,11 @@
 .tracklist {
   width: 100%;
 }
+.buttonSaveWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-width: 50px;
+}

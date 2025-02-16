@@ -42,7 +42,7 @@ function Track({
         <p>
           {album} - {artist}
         </p>
-
+       
         <button onClick={openPopup}>Play Preview</button>
 
         {isPopupOpen && (

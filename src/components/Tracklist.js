@@ -2,7 +2,7 @@ import React from "react";
 import Track from "./Track";
 import styles from "../css/Tracklist.module.css";
 
-function Tracklist({ tracks, handleAdd, playList, handleRemove }) {
+function Tracklist({ tracks, handleAdd, playList, handleRemove, addMoreResults }) {
   return (
     <div className={styles.tracklist}>
       {tracks?
@@ -18,6 +18,13 @@ function Tracklist({ tracks, handleAdd, playList, handleRemove }) {
             />
           ))
        : "" }
+           <div className={styles.buttonSaveWrapper}>
+          {tracks.length > 0 && (
+            <button className={styles.buttonSave} onClick={addMoreResults}>
+              MORE RESULTS
+            </button>
+          )}
+        </div>
     </div>
   );
 }

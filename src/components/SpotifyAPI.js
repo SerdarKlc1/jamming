@@ -1,6 +1,8 @@
 const clientId = '4075a427427f42c194d4a3686317fbc1'; // Insert client ID here.
 const redirectUri = 'http://localhost:3000/callback';
-let next;
+let nextPage;
+let response;
+let moveNextResponse
 let token = null;
 let tokenExpiration = null;
 
@@ -39,22 +41,42 @@ search (term) {
     }).then(response => {
       return response.json();
     }).then(jsonResponse => {
-      next=jsonResponse.tracks.next
-      console.log(next);
-      console.log(jsonResponse);
+      nextPage=jsonResponse.tracks.next
+      response=jsonResponse.tracks?.items
 
       if (!jsonResponse.tracks) {
         return [];
       }
-      return jsonResponse.tracks.items.map(track => ({
-        src: `https://open.spotify.com/embed/track/${track.id}`,
-        id: track.id,
-        name: track.name,
-        artist: track.artists?.[0]?.name || "Unknown Artist",
-        album: track.album?.name || "Unknown Album",
-        uri: track.uri
-      }));
+      return response
     });
+  },
+  responseHandler (response){
+    return response.map(track=>({
+      src:`https://open.spotify.com/embed/track/${track.id}`,
+      id: track.id,
+      name: track.name,
+      artist: track.artists?.[0]?.name || "Unknown Artist",
+      album: track.album?.name || "Unkown Album",
+      uri: track.uri
+    }))
+  },
+  moveNext() {
+    return fetch(nextPage, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }).then(response => {
+      return response.json();
+    }).then(jsonResponse => {
+      nextPage=jsonResponse.tracks.next
+      moveNextResponse=jsonResponse.tracks?.items
+
+      if (!jsonResponse.tracks) {
+        return [];
+      }
+      return Spotify.responseHandler(moveNextResponse)
+    });
+
   },
   savePlaylist(name, trackUris) {
     if (!name || !trackUris.length) {
@@ -86,4 +108,4 @@ search (term) {
   }
 }
 
-export default Spotify
+export  {Spotify, nextPage, response}
