@@ -9,7 +9,7 @@ function Tracklist({ tracks, handleAdd, playList, handleRemove, addMoreResults }
       tracks.map((track) => (
             <Track
               handleAdd={handleAdd}
-              key={track.id}
+              key={track.key}
               track={track}
               album={track.album || "Unkown Album"}
               artist={track.artist|| "Unknown Artist"}

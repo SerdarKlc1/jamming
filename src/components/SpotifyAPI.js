@@ -51,9 +51,10 @@ search (term) {
     });
   },
   responseHandler (response){
-    return response.map(track=>({
+    return response.map((track, i)=>({
       src:`https://open.spotify.com/embed/track/${track.id}`,
       id: track.id,
+      key: track.id + i,
       name: track.name,
       artist: track.artists?.[0]?.name || "Unknown Artist",
       album: track.album?.name || "Unkown Album",

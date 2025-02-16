@@ -3,7 +3,7 @@ import SearchBar from "./components/SearchBar";
 import SearchResults from "./components/SearchResults";
 import Playlist from "./components/Playlist";
 import styles from "./css/App.module.css";
-import {Spotify, nextPage} from "./components/SpotifyAPI";
+import {Spotify} from "./components/SpotifyAPI";
 
 function App() {
   const [tracks, setTracks] = useState("");
@@ -26,18 +26,18 @@ function App() {
     console.log('add more',tracks)
   };
   const handleAdd = (e) => {
-    if (!playlistUpdate.some((track) => track.id === e.id)) {
+    if (!playlistUpdate.some((track) => track.key === e.key)) {
       setPlaylistUpdate((prev) => [...prev, e]);
       
     } else {
       alert("The song is already added");
     }
-    const removeItem= tracks.filter((track)=>track.id !== e.id)
+    const removeItem= tracks.filter((track)=>track.key !== e.key)
     setTracks(removeItem)
   };
 
   const handleRemove = (e) => {
-    const removeItem = playlistUpdate.filter((track) => track.id !== e.id);
+    const removeItem = playlistUpdate.filter((track) => track.key !== e.key);
     setPlaylistUpdate(removeItem);
 
     setTracks(prev=>[e, ...prev])

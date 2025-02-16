@@ -22,7 +22,7 @@ export default function Playlist({
       </h2>
       <div>
         {playList.map((list) => (
-          <List key={list.id} list={list} handleRemove={handleRemove} />
+          <List key={list.key} list={list} handleRemove={handleRemove} />
         ))}
         <div className={styles.buttonSaveWrapper}>
           {playList.length > 0 && (

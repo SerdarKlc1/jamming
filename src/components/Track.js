@@ -20,15 +20,15 @@ function Track({
   };
 
   const renderAction = useCallback(() => {
-    if (playList.some((list) => list.id === track.id)) {
+    if (playList.some((list) => list.key === track.key)) {
       return (
-        <button key={track.id} onClick={() => handleRemove(track)}>
+        <button key={track.key} onClick={() => handleRemove(track)}>
           -
         </button>
       );
     } else {
       return (
-        <button key={track.id} onClick={() => handleAdd(track)}>
+        <button key={track.key} onClick={() => handleAdd(track)}>
           +
         </button>
       );
