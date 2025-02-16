@@ -1,5 +1,6 @@
 const clientId = '4075a427427f42c194d4a3686317fbc1'; // Insert client ID here.
 const redirectUri = 'http://localhost:3000/callback';
+let next;
 let token = null;
 let tokenExpiration = null;
 
@@ -38,7 +39,10 @@ search (term) {
     }).then(response => {
       return response.json();
     }).then(jsonResponse => {
+      next=jsonResponse.tracks.next
+      console.log(next);
       console.log(jsonResponse);
+
       if (!jsonResponse.tracks) {
         return [];
       }

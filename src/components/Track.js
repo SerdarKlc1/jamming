@@ -49,7 +49,7 @@ function Track({
           <div className={styles.popup}>
             <div className={styles.popupContent}>
               <button onClick={closePopup} className={styles.closeButton}>
-                Close
+                X
               </button>
               <iframe
                 src={`https://open.spotify.com/embed/track/${track.id}`}
