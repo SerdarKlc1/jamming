@@ -8,7 +8,7 @@
     "react-dom": "^19.0.0",
     "react-scripts": "5.0.1"
   },
-  "homepage": "https://serdarklc1.github.io/jamming",
+  "homepage": "https://serdarklc1.github.io/jamming/",
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
