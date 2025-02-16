@@ -94,3 +94,16 @@ p {
   border-radius: 10px;
   backdrop-filter: blur(10px);
 }
+
+.welcome-container {
+  max-width: 600px;
+  padding: 20px;
+  border-radius: 15px;
+  background: transparent;
+  background-color: transparent;
+
+}
+#header{
+  background-color: transparent;
+  padding: auto;
+}
