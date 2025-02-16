@@ -14,7 +14,7 @@ function App() {
 
   const handleLogin = useCallback(() => {
     Spotify.getAccessToken();
-    setIsLogin(true);
+    setIsLogin((prev)=>!prev);
   }, [setIsLogin]);
 
   // useEffect(() => {
