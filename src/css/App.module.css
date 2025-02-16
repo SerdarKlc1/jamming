@@ -2,33 +2,34 @@ body,
 html,
 #root {
   height: 100%;
-   
-
-html {
-  font-size: 18px;
-}
-
-h1 {
-  padding: .77rem 0;
-  background-color:#ff000091;
-  text-align: center;
-  font-family: 'Poppins', sans-serif;
-  font-size: 1.88rem;
-  color: #ff007fbf;
+  width: 100%;
+  box-sizing: border-box;
   margin: 0;
- 
-}
+  padding: 0;
+
+  html {
+    font-size: 18px;
+  }
+
+  h1 {
+    padding: 0.77rem 0;
+    background-color: #ff000091;
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    font-size: 1.88rem;
+    color: #ff007fbf;
+    margin: 0;
+  }
 }
 
 h1 .highlight {
-  color: #fff;;
+  color: #fff;
 }
 
 h2 {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 1.55rem;
 }
-
 
 .app {
   display: flex;
@@ -54,8 +55,6 @@ h2 {
   gap: 15px;
   width: 90%;
   margin-top: 20px;
-  
-
 }
 .content {
   display: grid;
@@ -86,7 +85,6 @@ p {
   padding-bottom: 8px;
 }
 
-
 .intialResults,
 .initialPlaylist {
   background: rgba(255, 255, 255, 0.1);
@@ -101,9 +99,8 @@ p {
   border-radius: 15px;
   background: transparent;
   background-color: transparent;
-
 }
-#header{
+#header {
   background-color: transparent;
   padding: auto;
 }

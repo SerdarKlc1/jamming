@@ -10,18 +10,23 @@ function App() {
   const [tracks, setTracks] = useState("");
   const [playlistUpdate, setPlaylistUpdate] = useState([]);
   const [titlePlaylist, setTitlePlaylist] = useState("Playlist");
-  const [isLogin, setIsLogin] = useState(null);
+  const [isLogin, setIsLogin] = useState(false);
 
   // const handleLogin = useCallback(() => {
   //   Spotify.getAccessToken()
   //   setIsLogin((prev)=>!prev);
-    
-  // }, [setIsLogin]);
 
+  // }, [setIsLogin]);
   useEffect(() => {
-   const accessToken= Spotify.getAccessToken();
-   setIsLogin(accessToken);
+    handleToken();
   }, []);
+  const handleToken = async () => {
+    const accessToken = await Spotify.getAccessToken();
+    if (accessToken) {
+      setIsLogin((prev) => !prev);
+    }
+  };
+
   const fetchArtistData = useCallback(
     (term) => {
       Spotify.search(term)
@@ -79,7 +84,7 @@ function App() {
           <div className="welcome-container">
             <h2 id={styles.header}>🎵 Welcome to Jamming!</h2>
             <p>Create and save your playlists directly to Spotify.</p>
-            <Login handleLogin={() => Spotify.getAccessToken()}  />
+            <Login handleLogin={handleToken} />
           </div>
         )}
         <div className={tracks ? styles.content : styles.initialContent}>
