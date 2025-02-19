@@ -18,6 +18,7 @@ export default function Playlist({
           value={titlePlaylist}
           type="text"
           onChange={setTitle}
+          
         />
       </h2>
       <div>

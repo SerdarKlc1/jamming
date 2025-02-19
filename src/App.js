@@ -1,10 +1,13 @@
 import React, { useState, useCallback, useEffect } from "react";
+// import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import SearchBar from "./components/SearchBar";
 import SearchResults from "./components/SearchResults";
 import Playlist from "./components/Playlist";
 import styles from "./css/App.module.css";
 import { Spotify } from "./components/SpotifyAPI";
 import Login from "./components/Login";
+import PlaylistList from "./components/PlaylistList";
+
 
 function App() {
   const [tracks, setTracks] = useState("");
@@ -74,19 +77,18 @@ function App() {
   return (
     <>
       <h1>
-        Ja<span className={styles.highlight}>mm</span>ing
+       Ja<span className={styles.highlight}>mm</span>ing
       </h1>
       <div className={styles.app}>
         {isLogin ? (
           <div className={styles.searchBar}>
             <SearchBar onSearch={fetchArtistData} />
+            <PlaylistList/>
           </div>
         ) : (
-          <div className="welcome-container">
-            <h2 id={styles.header}>🎵 Welcome to Jamming!</h2>
-            <p>Create and save your playlists directly to Spotify.</p>
-            <Login handleLogin={handleToken} />
-          </div>
+        
+            <Login handleLogin={handleToken} isLogin={isLogin} />
+         
         )}
         <div className={tracks ? styles.content : styles.initialContent}>
           <div className={tracks ? styles.results : styles.intialResults}>

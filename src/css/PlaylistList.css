@@ -1,0 +1,42 @@
+.playlistList {
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  color: white;
+  font-family: Arial, sans-serif;
+  width: 250px;
+}
+
+.playlistTitle {
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+}
+
+.playlistTitle:hover {
+  color: #ff4081;
+}
+
+.playlistItems {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 10px;
+}
+
+.playlistItem {
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  margin: 5px 0;
+  transition: background 0.3s ease;
+}
+
+.playlistItem:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.noPlaylist {
+  color: #ff8080;
+  font-style: italic;
+}

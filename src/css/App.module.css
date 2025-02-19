@@ -25,6 +25,15 @@ html,
 h1 .highlight {
   color: #fff;
 }
+h1 {
+  font-family: 'Poppins', sans-serif; /* A modern, clean font */
+  font-size: 3rem;
+  font-weight: bold;
+  color: white; /* Improves contrast */
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Soft glow effect */
+  letter-spacing: 2px; /* More stylish spacing */
+  text-transform: uppercase; /* Makes it stand out */
+}
 
 h2 {
   font-family: "Poppins", sans-serif;
@@ -99,8 +108,4 @@ p {
   border-radius: 15px;
   background: transparent;
   background-color: transparent;
-}
-#header {
-  background-color: transparent;
-  padding: auto;
 }

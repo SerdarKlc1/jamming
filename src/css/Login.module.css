@@ -21,3 +21,8 @@
     background-color: #17a74a;
     transform: scale(1.05);
   }
+  #header {
+    background-color: transparent;
+    padding: auto;
+  }
+  
