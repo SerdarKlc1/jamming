@@ -1,10 +1,11 @@
 .playlistList {
-  padding: 20px;
+  padding: 10px;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 10px;
   color: white;
   font-family: Arial, sans-serif;
-  width: 250px;
+  width: auto;
+  cursor: pointer;
 }
 
 .playlistTitle {
@@ -25,18 +26,34 @@
 }
 
 .playlistItem {
-  padding: 8px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 5px;
-  margin: 5px 0;
-  transition: background 0.3s ease;
+  padding: 12px 4px;
+  border-top: 1px solid #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  
+ 
 }
 
 .playlistItem:hover {
   background: rgba(255, 255, 255, 0.4);
+  padding: 10px 2px;
 }
 
 .noPlaylist {
   color: #ff8080;
-  font-style: italic;
+}
+
+.listWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.buttonWrapper {
+  display: inline-block;
+  margin-left: auto;
+  margin-right: 10px;
 }

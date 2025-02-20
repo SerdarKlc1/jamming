@@ -36,7 +36,6 @@ const Spotify = {
         redirectUri
       )}`;
       window.location = accessUrl;
-     
     }
   },
   getStoredAccessToken: async () => {
@@ -47,8 +46,6 @@ const Spotify = {
   },
   search(term) {
     const token = Spotify.getAccessToken();
-    
-   
 
     return fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`, {
       headers: {
@@ -88,20 +85,54 @@ const Spotify = {
       });
       const jsonResponse = await response.json();
       console.log(jsonResponse);
-      userName = jsonResponse.display_name      
+      userName = jsonResponse.display_name;
       userId = jsonResponse.id;
     }
     console.log("userId", userId);
-    
+
     return userId;
   },
-
+  async getPlaylist(id) {
+    token = token || (await Spotify.getAccessToken());
+    headers = { Authorization: `Bearer ${token}` };
+    userId = userId || (await Spotify.getCurrentUserId());
+    const endpoint = `https://api.spotify.com/v1/users/${userId}/playlists/${id}/tracks`;
+    const result = await fetch(endpoint, {
+      headers: headers,
+    });
+    const response = result.json();
+    console.log('select playlist', response)
+    return response;
+  },
+  async deletePlaylist(playlistId) {
+    const token = await Spotify.getAccessToken();
+    const userId = await Spotify.getCurrentUserId();
+    const endpoint = `https://api.spotify.com/v1/playlists/${playlistId}/followers`;
+  
+    try {
+      const response = await fetch(endpoint, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+  
+      if (response.status === 200) {
+        console.log(`Playlist ${playlistId} deleted successfully.`);
+      } else {
+        const errorData = await response.json();
+        console.error(`Error deleting playlist:`, errorData);
+      }
+    } catch (error) {
+      console.error("Network error:", error);
+    }
+  },
   async getUserPlaylists() {
-    
-      token = await Spotify.getAccessToken();
-      headers = { Authorization: `Bearer ${token}` };
-      userId = await Spotify.getCurrentUserId();
-    
+    token = await Spotify.getAccessToken();
+    headers = { Authorization: `Bearer ${token}` };
+    userId = await Spotify.getCurrentUserId();
+
     return fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
       headers: headers,
     })
@@ -110,9 +141,8 @@ const Spotify = {
         const playlistId = jsonResponse.id;
         console.log("response playlist", jsonResponse);
         console.log("playlist", playlistId);
-        return jsonResponse
+        return jsonResponse;
       });
-    
   },
 
   moveNext() {
@@ -161,4 +191,4 @@ const Spotify = {
   },
 };
 
-export { Spotify, nextPage, response, userName };
+export { Spotify, nextPage, response, userName};

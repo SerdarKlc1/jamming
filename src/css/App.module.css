@@ -68,17 +68,27 @@ h2 {
 .content {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  
+
   gap: 35px;
   width: 90%;
   margin-top: 20px;
-  margin: auto;
 }
 @media (max-width: 600px) {
   .content {
     grid-template-columns: 1fr;
   }
 }
-.results,
+.results {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 10px;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  height: 75vh;
+  overflow-y: scroll;
+}
+
 .playlist {
   background: rgba(255, 255, 255, 0.1);
   padding: 10px;
@@ -86,8 +96,8 @@ h2 {
   backdrop-filter: blur(10px);
   height: 75vh;
   overflow-y: scroll;
-  border-bottom: 2px solid #fc913a;
 }
+
 
 p {
   margin: auto;

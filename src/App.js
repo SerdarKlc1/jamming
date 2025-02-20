@@ -12,7 +12,7 @@ import PlaylistList from "./components/PlaylistList";
 function App() {
   const [tracks, setTracks] = useState("");
   const [playlistUpdate, setPlaylistUpdate] = useState([]);
-  const [titlePlaylist, setTitlePlaylist] = useState("Playlist");
+  const [titlePlaylist, setTitlePlaylist] = useState("Create Your Playlist");
   const [isLogin, setIsLogin] = useState(false);
 
   // const handleLogin = useCallback(() => {
@@ -83,7 +83,7 @@ function App() {
         {isLogin ? (
           <div className={styles.searchBar}>
             <SearchBar onSearch={fetchArtistData} />
-            <PlaylistList/>
+            
           </div>
         ) : (
         
@@ -108,6 +108,10 @@ function App() {
               playList={playlistUpdate}
               handleRemove={handleRemove}
             />
+          
+          </div>
+          <div className={styles.localPlaylist}>
+          <PlaylistList />
           </div>
         </div>
       </div>
