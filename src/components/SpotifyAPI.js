@@ -189,6 +189,48 @@ const Spotify = {
         return Spotify.responseHandler(moveNextResponse);
       });
   },
+  async addTrackToPlaylist  (playlistId, trackUri) {
+    token = await Spotify.getAccessToken();
+    const endpoint = `https://api.spotify.com/v1/playlists/${playlistId}/tracks`;
+  
+    const response = await fetch(endpoint, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ uris: [trackUri] }),
+    });
+  
+    if (!response.ok) {
+      console.error("Failed to add track:", response.statusText);
+      return;
+    }
+  
+    console.log("Track added successfully!");
+  },
+  async removeTrackFromPlaylist (playlistId, trackUri) {
+    token = await Spotify.getAccessToken();
+    const endpoint = `https://api.spotify.com/v1/playlists/${playlistId}/tracks`;
+  
+    const response = await fetch(endpoint, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        tracks: [{ uri: trackUri }], 
+      }),
+    });
+  
+    if (!response.ok) {
+      console.error("Failed to remove track:", response.statusText);
+      return;
+    }
+  
+    console.log("✅ Track removed successfully!");
+  },
   savePlaylist(name, trackUris) {
     if (!name || !trackUris.length) {
       return;

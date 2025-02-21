@@ -37,7 +37,7 @@
 }
 
 .playlistItem:hover {
-  background: rgba(255, 255, 255, 0.4);
+  font-size: larger;
   padding: 10px 2px;
 }
 

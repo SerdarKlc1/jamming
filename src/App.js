@@ -11,7 +11,7 @@ import { PlaylistList } from "./components/PlaylistList";
 function App() {
   const [tracks, setTracks] = useState("");
   const [playlistUpdate, setPlaylistUpdate] = useState([]);
-  const [titlePlaylist, setTitlePlaylist] = useState("Create Your Playlist");
+  const [titlePlaylist, setTitlePlaylist] = useState("Create Playlist");
   const [isLogin, setIsLogin] = useState(false);
 
   // const handleLogin = useCallback(() => {
@@ -68,7 +68,7 @@ function App() {
   const savePlayList = useCallback(() => {
     const trackUri = playlistUpdate.map((track) => track.uri);
     Spotify.savePlaylist(titlePlaylist, trackUri).then(() => {
-      setTitlePlaylist("Playlist");
+      setTitlePlaylist("Create Playlist");
       setPlaylistUpdate([]);
     });
   }, [playlistUpdate, titlePlaylist]);

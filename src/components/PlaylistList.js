@@ -9,20 +9,29 @@ function PlaylistList() {
   const [selectedPlaylistTracks, setSelectedPlaylistTracks] = useState([]);
   const [selectedPlaylistId, setSelectedPlaylistId] = useState(null);
 
+  // const handleTrackAdd = async (trackUri) => {
+  //   await addTrackToPlaylist(selectedPlaylistId, trackUri);
+  //   setSelectedPlaylistTracks([...selectedPlaylistTracks, { track: { uri: trackUri } }]);
+  // };
+  
+  // const handleTrackRemove = async (trackUri) => {
+  //   await removeTrackFromPlaylist(selectedPlaylistId, trackUri);
+  //   setSelectedPlaylistTracks(selectedPlaylistTracks.filter((track) => track.track.uri !== trackUri));
+  // };
+  
 
-const handlePlaylistClick = async (playlistId) => {
-  console.log(`Playlist clicked: ${playlistId}`);
-  if (selectedPlaylistId === playlistId) {
-    setSelectedPlaylistId(null);
-    setSelectedPlaylistTracks([]);
-    return;
-  } 
-  setSelectedPlaylistId(playlistId);
-  const tracks = await Spotify.getPlaylistTracks(playlistId);
+  const handlePlaylistClick = async (playlistId) => {
+    console.log(`Playlist clicked: ${playlistId}`);
+    if (selectedPlaylistId === playlistId) {
+      setSelectedPlaylistId(null);
+      setSelectedPlaylistTracks([]);
+      return;
+    }
+    setSelectedPlaylistId(playlistId);
+    const tracks = await Spotify.getPlaylistTracks(playlistId);
 
-  setSelectedPlaylistTracks(tracks); 
-};
-
+    setSelectedPlaylistTracks(tracks);
+  };
 
   const handleUserPlayList = async () => {
     try {
@@ -35,30 +44,36 @@ const handlePlaylistClick = async (playlistId) => {
     }
   };
   const handleDelete = (e) => {
-    Spotify.deletePlaylist(e).then((response)=>{
-      if(response){
-        setUserPlaylists(userPlaylists.filter((element)=>{
-          return element.id !== e;
-         }))
+    Spotify.deletePlaylist(e).then((response) => {
+      if (response) {
+        setUserPlaylists(
+          userPlaylists.filter((element) => {
+            return element.id !== e;
+          })
+        );
       }
       handleUserPlayList();
       setClicked((prev) => !prev);
-    })
-    console.log('handleDelete', e)
+    });
+    console.log("handleDelete", e);
   };
 
   return (
     <div className={styles.playlistList}>
       {/* <h3>{userName || Spotify.getCurrentUserId()}</h3> */}
-      <h3
-        onClick={handleUserPlayList}
-        className={styles.playlistTitle}
-      >
-        Local Playlist
+      <h3 onClick={handleUserPlayList} className={styles.playlistTitle}>
+        Your Library
       </h3>
-      <PlaylistItem selectedPlaylistId={selectedPlaylistId} handlePlaylistClick={handlePlaylistClick} selectedPlaylistTracks={selectedPlaylistTracks} handleDelete={handleDelete} clicked={clicked} userPlaylists={userPlaylists} />
+      <PlaylistItem
+        selectedPlaylistId={selectedPlaylistId}
+        handlePlaylistClick={handlePlaylistClick}
+        selectedPlaylistTracks={selectedPlaylistTracks}
+        handleDelete={handleDelete}
+        clicked={clicked}
+        userPlaylists={userPlaylists}
+      />
     </div>
   );
 }
 
-export { PlaylistList}
+export { PlaylistList };
