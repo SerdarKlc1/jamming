@@ -86,8 +86,8 @@ function App() {
         ) : (
           <Login handleLogin={handleToken} isLogin={isLogin} />
         )}
-        <div className={tracks ? styles.content : styles.initialContent}>
-          <div className={tracks ? styles.results : styles.intialResults}>
+        <div className={styles.content}>
+          <div className={styles.results}>
             <SearchResults
               handleAdd={handleAdd}
               handleRemove={handleRemove}
@@ -96,7 +96,7 @@ function App() {
               addMoreResults={addMoreResults}
             />
           </div>
-          <div className={tracks ? styles.playlist : styles.initialPlaylist}>
+          <div className={styles.playlist}>
             <Playlist
               setTitle={handleTitle}
               onSave={savePlayList}
