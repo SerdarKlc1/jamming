@@ -105,8 +105,8 @@ const Spotify = {
     return response;
   },
   async deletePlaylist(playlistId) {
-    const token = await Spotify.getAccessToken();
-    const userId = await Spotify.getCurrentUserId();
+     token = await Spotify.getAccessToken();
+     userId = await Spotify.getCurrentUserId();
     const endpoint = `https://api.spotify.com/v1/playlists/${playlistId}/followers`;
 
     try {
