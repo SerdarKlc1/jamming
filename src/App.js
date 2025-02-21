@@ -4,7 +4,7 @@ import SearchBar from "./components/SearchBar";
 import SearchResults from "./components/SearchResults";
 import Playlist from "./components/Playlist";
 import styles from "./css/App.module.css";
-import { Spotify } from "./components/SpotifyAPI";
+import { Spotify, userName } from "./components/SpotifyAPI";
 import Login from "./components/Login";
 import { PlaylistList } from "./components/PlaylistList";
 
@@ -14,11 +14,7 @@ function App() {
   const [titlePlaylist, setTitlePlaylist] = useState("Create Playlist");
   const [isLogin, setIsLogin] = useState(false);
 
-  // const handleLogin = useCallback(() => {
-  //   Spotify.getAccessToken()
-  //   setIsLogin((prev)=>!prev);
 
-  // }, [setIsLogin]);
   useEffect(() => {
     handleToken();
   }, []);

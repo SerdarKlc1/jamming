@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { userName, Spotify, response } from "./SpotifyAPI";
+import { Spotify } from "./SpotifyAPI";
 import styles from "../css/PlaylistList.module.css";
 import PlaylistItem from "./PlayListItem";
 
