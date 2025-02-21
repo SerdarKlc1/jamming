@@ -1,6 +1,6 @@
 .playlistList {
   padding: 10px;
-  background: rgba(255, 255, 255, 0.1);
+  /* background: rgba(255, 255, 255, 0.1); */
   border-radius: 10px;
   color: white;
   font-family: Arial, sans-serif;
@@ -38,7 +38,7 @@
 
 .playlistItem:hover {
   font-size: larger;
-  padding: 10px 2px;
+  
 }
 
 .noPlaylist {

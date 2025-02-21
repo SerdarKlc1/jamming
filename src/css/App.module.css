@@ -67,8 +67,8 @@ h2 {
 }
 .content {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template: repeat(6, 1fr) / 1fr 1fr;
+  height: 75vh;
   
 
   gap: 35px;
@@ -85,7 +85,9 @@ h2 {
   padding: 10px;
   border-radius: 10px;
   backdrop-filter: blur(10px);
-  height: 75vh;
+  grid-column: 1fr;
+  grid-row: 1 / span 6;
+  display: grid;
   overflow-y: scroll;
 }
 
@@ -94,10 +96,19 @@ h2 {
   padding: 10px;
   border-radius: 10px;
   backdrop-filter: blur(10px);
-  height: 75vh;
+  grid-column: 1fr;
+  grid-row: 1 / span 3;
   overflow-y: scroll;
 }
-
+.localPlaylist {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 10px;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  grid-column: 1fr;
+  grid-row: 4 / span 3;
+  overflow-y: scroll;
+}
 
 p {
   margin: auto;
