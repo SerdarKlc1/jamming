@@ -42,7 +42,8 @@
 }
 
 .noPlaylist {
-  color: #ff8080;
+  color: #fff;
+  font-style: italic;
 }
 
 .listWrapper {

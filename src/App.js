@@ -6,7 +6,7 @@ import Playlist from "./components/Playlist";
 import styles from "./css/App.module.css";
 import { Spotify } from "./components/SpotifyAPI";
 import Login from "./components/Login";
-import PlaylistList from "./components/PlaylistList";
+import {PlaylistList} from "./components/PlaylistList";
 
 
 function App() {
@@ -71,8 +71,9 @@ function App() {
     Spotify.savePlaylist(titlePlaylist, trackUri).then(() => {
       setTitlePlaylist("Playlist");
       setPlaylistUpdate([]);
+      handleUserPlayList()
     });
-  }, [playlistUpdate, titlePlaylist]);
+  }, [playlistUpdate, titlePlaylist, handleUserPlayList]);
 
   return (
     <>

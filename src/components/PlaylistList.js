@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { userName, Spotify, response } from "./SpotifyAPI";
 import styles from "../css/PlaylistList.module.css";
 import PlaylistItem from "./PlayListItem";
-export default function PlaylistList() {
+
+function PlaylistList() {
   const [clicked, setClicked] = useState(false);
   const [userPlaylists, setUserPlaylists] = useState([]);
 
@@ -23,6 +24,8 @@ export default function PlaylistList() {
           return element.id !== e;
          }))
       }
+      handleUserPlayList();
+      setClicked((prev) => !prev);
     })
     console.log('handleDelete', e)
   };
@@ -40,3 +43,5 @@ export default function PlaylistList() {
     </div>
   );
 }
+
+export { PlaylistList}
