@@ -10,7 +10,7 @@ let token = null;
 let tokenExpiration = null;
 let headers;
 let userId;
-let userName;
+
 
 const Spotify = {
   getAccessToken() {
@@ -85,7 +85,7 @@ const Spotify = {
       });
       const jsonResponse = await response.json();
       console.log(jsonResponse);
-      userName = jsonResponse.display_name;
+      // userName = jsonResponse.display_name;
       userId = jsonResponse.id;
     }
     console.log("userId", userId);
