@@ -4,7 +4,7 @@ import SearchBar from "./components/SearchBar";
 import SearchResults from "./components/SearchResults";
 import Playlist from "./components/Playlist";
 import styles from "./css/App.module.css";
-import { Spotify, userName } from "./components/SpotifyAPI";
+import { Spotify } from "./components/SpotifyAPI";
 import Login from "./components/Login";
 import { PlaylistList } from "./components/PlaylistList";
 

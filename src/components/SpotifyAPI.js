@@ -258,4 +258,4 @@ const Spotify = {
   },
 };
 
-export { Spotify, nextPage, response, userName };
+export { Spotify, nextPage };
