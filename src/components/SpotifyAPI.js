@@ -101,14 +101,14 @@ const Spotify = {
       headers: headers,
     });
     const response = result.json();
-    console.log('select playlist', response)
+    console.log("select playlist", response);
     return response;
   },
   async deletePlaylist(playlistId) {
     const token = await Spotify.getAccessToken();
     const userId = await Spotify.getCurrentUserId();
     const endpoint = `https://api.spotify.com/v1/playlists/${playlistId}/followers`;
-  
+
     try {
       const response = await fetch(endpoint, {
         method: "DELETE",
@@ -117,7 +117,7 @@ const Spotify = {
           "Content-Type": "application/json",
         },
       });
-  
+
       if (response.status === 200) {
         console.log(`Playlist ${playlistId} deleted successfully.`);
       } else {
@@ -143,6 +143,31 @@ const Spotify = {
         console.log("playlist", playlistId);
         return jsonResponse;
       });
+  },
+  async getPlaylistTracks(playlistId) {
+    token = await Spotify.getAccessToken();
+    const endpoint = `https://api.spotify.com/v1/playlists/${playlistId}/tracks`;
+
+    try {
+      const response = await fetch(endpoint, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to fetch tracks: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log("Playlist Tracks:", data.items);
+
+      return data.items;
+    } catch (error) {
+      console.error("Error fetching playlist tracks:", error);
+      return [];
+    }
   },
 
   moveNext() {
@@ -191,4 +216,4 @@ const Spotify = {
   },
 };
 
-export { Spotify, nextPage, response, userName};
+export { Spotify, nextPage, response, userName };

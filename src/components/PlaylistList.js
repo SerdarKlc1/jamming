@@ -6,6 +6,23 @@ import PlaylistItem from "./PlayListItem";
 function PlaylistList() {
   const [clicked, setClicked] = useState(false);
   const [userPlaylists, setUserPlaylists] = useState([]);
+  const [selectedPlaylistTracks, setSelectedPlaylistTracks] = useState([]);
+  const [selectedPlaylistId, setSelectedPlaylistId] = useState(null);
+
+
+const handlePlaylistClick = async (playlistId) => {
+  console.log(`Playlist clicked: ${playlistId}`);
+  if (selectedPlaylistId === playlistId) {
+    setSelectedPlaylistId(null);
+    setSelectedPlaylistTracks([]);
+    return;
+  } 
+  setSelectedPlaylistId(playlistId);
+  const tracks = await Spotify.getPlaylistTracks(playlistId);
+
+  setSelectedPlaylistTracks(tracks); 
+};
+
 
   const handleUserPlayList = async () => {
     try {
@@ -39,7 +56,7 @@ function PlaylistList() {
       >
         Local Playlist
       </h3>
-      <PlaylistItem handleDelete={handleDelete} clicked={clicked} userPlaylists={userPlaylists} />
+      <PlaylistItem selectedPlaylistId={selectedPlaylistId} handlePlaylistClick={handlePlaylistClick} selectedPlaylistTracks={selectedPlaylistTracks} handleDelete={handleDelete} clicked={clicked} userPlaylists={userPlaylists} />
     </div>
   );
 }

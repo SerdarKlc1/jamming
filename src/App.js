@@ -6,8 +6,7 @@ import Playlist from "./components/Playlist";
 import styles from "./css/App.module.css";
 import { Spotify } from "./components/SpotifyAPI";
 import Login from "./components/Login";
-import {PlaylistList} from "./components/PlaylistList";
-
+import { PlaylistList } from "./components/PlaylistList";
 
 function App() {
   const [tracks, setTracks] = useState("");
@@ -38,7 +37,7 @@ function App() {
     },
     [setTracks]
   );
-  
+
   const addMoreResults = () => {
     Spotify.moveNext().then((response) =>
       setTracks((prev) => [...prev, ...response])
@@ -71,25 +70,21 @@ function App() {
     Spotify.savePlaylist(titlePlaylist, trackUri).then(() => {
       setTitlePlaylist("Playlist");
       setPlaylistUpdate([]);
-      handleUserPlayList()
     });
-  }, [playlistUpdate, titlePlaylist, handleUserPlayList]);
+  }, [playlistUpdate, titlePlaylist]);
 
   return (
     <>
       <h1>
-       Ja<span className={styles.highlight}>mm</span>ing
+        Ja<span className={styles.highlight}>mm</span>ing
       </h1>
       <div className={styles.app}>
         {isLogin ? (
           <div className={styles.searchBar}>
             <SearchBar onSearch={fetchArtistData} />
-            
           </div>
         ) : (
-        
-            <Login handleLogin={handleToken} isLogin={isLogin} />
-         
+          <Login handleLogin={handleToken} isLogin={isLogin} />
         )}
         <div className={tracks ? styles.content : styles.initialContent}>
           <div className={tracks ? styles.results : styles.intialResults}>
@@ -109,10 +104,9 @@ function App() {
               playList={playlistUpdate}
               handleRemove={handleRemove}
             />
-          
           </div>
           <div className={styles.localPlaylist}>
-          <PlaylistList />
+            <PlaylistList />
           </div>
         </div>
       </div>
