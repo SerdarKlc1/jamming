@@ -6,7 +6,7 @@ export default function Login({ handleLogin, isLogin }) {
       <h2 id={styles.header}>🎵 Welcome to Jamming!</h2>
       <p>Create and save your playlists directly to Spotify.</p>
       <button className={styles.loginButton} onClick={handleLogin}>
-        {isLogin ? "Loading..." : "Login with Spotify"}
+        {isLogin ? "Loading..." :  "Login with Spotify"}
       </button>
     </div>
   );

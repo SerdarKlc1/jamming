@@ -21,8 +21,9 @@ function App() {
     try {
       const accessToken = await Spotify.getAccessToken();
       if (accessToken) {
+        Spotify.getAccessToken()
         setIsLogin((prev) => !prev);
-        Spotify.getAccessToken();
+        
       }
       
     } catch (error) {
