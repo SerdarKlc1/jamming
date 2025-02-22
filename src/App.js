@@ -18,7 +18,7 @@ function App() {
 
   const handleToken = async () => {
     if (isLogin) return;
-    setIsLogin(true);
+   
 
     try {
       const accessToken = await Spotify.getAccessToken();
