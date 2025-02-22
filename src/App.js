@@ -17,9 +17,19 @@ function App() {
 
 
   const handleToken = async () => {
-    const accessToken = await Spotify.getAccessToken();
-    if (accessToken) {
-      setIsLogin((prev) => !prev);
+    if (isLogin) return;
+    setIsLogin(true);
+
+    try {
+      const accessToken = await Spotify.getAccessToken();
+      if (accessToken) {
+        setIsLogin((prev) => !prev);
+      }
+      
+    } catch (error) {
+      console.error("Error fetching access token:", error);
+    } finally {
+      setIsLogin(false)
     }
   };
 
