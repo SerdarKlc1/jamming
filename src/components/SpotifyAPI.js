@@ -15,6 +15,7 @@ let userId;
 const Spotify = {
   getAccessToken() {
     if (token) {
+      
       return token;
     }
 
@@ -258,4 +259,4 @@ const Spotify = {
   },
 };
 
-export { Spotify, nextPage };
+export { Spotify, nextPage, token };

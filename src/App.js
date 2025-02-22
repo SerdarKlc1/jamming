@@ -1,10 +1,10 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 // import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import SearchBar from "./components/SearchBar";
 import SearchResults from "./components/SearchResults";
 import Playlist from "./components/Playlist";
 import styles from "./css/App.module.css";
-import { Spotify } from "./components/SpotifyAPI";
+import { Spotify, token} from "./components/SpotifyAPI";
 import Login from "./components/Login";
 import { PlaylistList } from "./components/PlaylistList";
 
@@ -14,14 +14,20 @@ function App() {
   const [titlePlaylist, setTitlePlaylist] = useState("Create Playlist");
   const [isLogin, setIsLogin] = useState(false);
 
-
+  useEffect(()=>{
+    if(token){
+      return;
+    } else {
+      handleToken()
+    }
+  },[])
 
   const handleToken = async () => {
     const accessToken = await Spotify.getAccessToken();
-    const result = await Spotify.getAccessToken();
-
-    if (result && accessToken) {
+    console.log("iam clicked", accessToken)
+    if (accessToken) {
       setIsLogin((prev) => !prev);
+      console.log("iam islogin", accessToken)
     }
   };
 
