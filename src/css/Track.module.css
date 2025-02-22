@@ -29,38 +29,41 @@ p {
 
 .popup {
   position: absolute;
-  background: rgba(0, 0, 0, 0.8);
+  
   z-index: 1000;
   padding: 5px; 
   /* border-radius: 8px; */
-  width: 320px;
+  width: 300px;
   height: 100px;
   color: white;
+  border-radius: 8px;
 }
 
 .popupContent {
   position: relative;
-  width: 320px;
+  width: 290px;
   height: 100px;
   /* background-color: white; */
   padding: 5px; 
   border-radius: 8px;
-  margin-left: 3px;
+  margin-left: 1px;
   margin-top: 3px;
 }
+
 
 
 .closeButton {
   position: absolute;
   top: 5px;
-  right: 10px;
+  right:-8px;
   background-color: red;
   color: white;
   border: none;
   border-radius: 10%;
   cursor: pointer;
-  padding: 5px 10px;
-  margin-right: 10px;
+  padding: 7px 10px;
+  margin-right: 1px;
+  
 
   
 }
