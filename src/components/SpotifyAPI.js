@@ -33,7 +33,7 @@ const Spotify = {
 
       return token;
     } else {
-      const accessUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=${encodeURIComponent(
+      const accessUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public playlist-modify-private user-read-private user-read-email&redirect_uri=${encodeURIComponent(
         redirectUri
       )}`;
       window.location = accessUrl;
