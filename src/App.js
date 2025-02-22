@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback } from "react";
 // import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import SearchBar from "./components/SearchBar";
 import SearchResults from "./components/SearchResults";
@@ -15,9 +15,7 @@ function App() {
   const [isLogin, setIsLogin] = useState(false);
 
 
-  useEffect(() => {
-    handleToken();
-  }, []);
+
   const handleToken = async () => {
     const accessToken = await Spotify.getAccessToken();
     if (accessToken) {
