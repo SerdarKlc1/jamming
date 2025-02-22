@@ -18,8 +18,8 @@ html,
 
     text-align: center;
     font-family: "Poppins", sans-serif;
-    font-size: 1.88rem;
-    color: #ff007fbf;
+    font-size: 2.1rem;
+    color: #ff007f;
     margin: 20px;
   }
 }
@@ -70,58 +70,83 @@ h2 {
 } */
 .content {
   display: grid;
-  grid-template: repeat(6, 1fr) / 1fr 1fr;
-  height: 75vh;
-  
-
+  grid-template: repeat(6, 1fr) / 1fr 1fr; /* 2 columns by default */
+  height: 65vh;
   gap: 20px;
   width: 90%;
   margin-top: 20px;
 }
-@media (max-width: 600px) {
-  .content {
-    flex-direction: column;
-  }
-  .results, .playlist, .localPlaylist {
-    flex: 1 1 100%; 
-  }
-}
 
-
-.results {
-  flex: 1;
+/* Shared styling */
+.results,
+.playlist,
+.localPlaylist {
   background: rgba(255, 255, 255, 0.1);
   padding: 10px;
   border-radius: 10px;
   backdrop-filter: blur(10px);
+  overflow-y: scroll; /* Prevents unnecessary scroll */
+  min-height: 100px; /* Prevents elements from collapsing on mobile */
+}
+
+/* Default layout for larger screens */
+.results {
+  flex: 1;
   grid-column: 1fr;
   grid-row: 1 / span 6;
   display: grid;
-  overflow-y: scroll;
 }
 
 .playlist {
   flex: 2;
-  background: rgba(255, 255, 255, 0.1);
-  padding: 10px;
-  border-radius: 10px;
-  backdrop-filter: blur(10px);
   grid-column: 1fr;
   grid-row: 1 / span 3;
-  overflow-y: scroll;
-}
-.localPlaylist {
-  flex: 2;
-  background: rgba(255, 255, 255, 0.1);
-  padding: 10px;
-  border-radius: 10px;
-  backdrop-filter: blur(10px);
-  grid-column: 1fr;
-  grid-row: 4 / span 3;
-  overflow-y: scroll;
-  
 }
 
+.localPlaylist {
+  flex: 2;
+  grid-column: 1fr;
+  grid-row: 4 / span 3;
+}
+
+/* 🔹 Mobile optimization: Switch to a single-column layout */
+@media screen and (max-width: 768px) {
+  .content {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+
+  .results {
+    height: 70vh; 
+    width: 96%;
+    min-height: 300px;
+    
+  }
+
+  .playlist{
+    width: 96%;
+    height: 30vh;
+
+  }
+
+
+  .localPlaylist {
+    width: 96%;
+    height: 20vh;
+    
+  }
+
+  button {
+    font-size: 0.8rem;
+    padding: 5px 8px;
+    
+  }
+  h3 {
+    font-size: 0.9rem;
+  }
+ 
+}
 p {
   margin: auto;
   padding-bottom: 8px;
