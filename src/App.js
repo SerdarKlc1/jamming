@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 // import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import SearchBar from "./components/SearchBar";
 import SearchResults from "./components/SearchResults";
@@ -15,23 +15,25 @@ function App() {
   const [isLogin, setIsLogin] = useState(false);
 
 
-
-  const handleToken = async () => {
-   
-    try {
-      const accessToken = await Spotify.getAccessToken();
-      if (accessToken) {
-        Spotify.getAccessToken()
-        setIsLogin((prev) => !prev);
-        
-      }
-      
-    } catch (error) {
-      console.error("Error fetching access token:", error);
-    } finally {
-      setIsLogin(false)
+  useEffect(() => {
+    const accessToken = Spotify.getAccessToken();
+    if (accessToken) {
+      setIsLogin(true);
     }
-  };
+  }, []);
+
+
+
+    const handleToken = async () => {
+     
+      
+        const accessToken = await Spotify.getAccessToken();
+
+          if(accessToken){
+
+            setIsLogin((prev) => !prev);
+          }
+      } 
 
   const fetchArtistData = useCallback(
     (term) => {
