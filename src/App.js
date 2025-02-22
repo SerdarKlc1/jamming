@@ -17,13 +17,12 @@ function App() {
 
 
   const handleToken = async () => {
-    if (isLogin) return;
    
-
     try {
       const accessToken = await Spotify.getAccessToken();
       if (accessToken) {
         setIsLogin((prev) => !prev);
+        Spotify.getAccessToken();
       }
       
     } catch (error) {
